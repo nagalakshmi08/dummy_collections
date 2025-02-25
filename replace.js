@@ -9,9 +9,9 @@ fs.readFile(filePath, "utf8", (err, data) => {
         return;
     }
 
-    // Replace all "Distacart" with "Distacart.com" but ignore "Distacart.com"
-    const updatedData = data.replace(/\bDistacart\b(?!\.com)/g, "Distacart.com")
-                            .replace(/\bdistacart\b(?!\.com)/g, "distacart.com");
+    // Regex to replace "Distacart" unless followed by ".com"
+    const updatedData = data.replace(/\bDistacart(?!\.com)\b/g, "Distacart.com")
+                            .replace(/\bdistacart(?!\.com)\b/g, "distacart.com");
 
     // Write back the modified data to the same file
     fs.writeFile(filePath, updatedData, "utf8", (err) => {
